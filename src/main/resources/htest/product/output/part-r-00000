@@ -1,0 +1,3 @@
+ProductMapWritable(orderId=10000001, proId=prod_01, price=222.8)
+ProductMapWritable(orderId=10000002, proId=prod_05, price=722.4)
+ProductMapWritable(orderId=10000003, proId=prod_06, price=232.8)
