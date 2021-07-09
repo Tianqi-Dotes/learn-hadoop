@@ -37,6 +37,8 @@ public class OrderMapJoinMapper extends Mapper<LongWritable, Text, Text, NullWri
     @Override
     //处理大表之前 把小表维护内存中
     protected void setup(Context context) throws IOException, InterruptedException {
+
+        context.getCounter("mapjoin","setup").increment(1);
         URI[] cacheFiles = context.getCacheFiles();
         final URI cacheFile = cacheFiles[0];
         FileSystem fs=FileSystem.get(context.getConfiguration());
@@ -52,6 +54,7 @@ public class OrderMapJoinMapper extends Mapper<LongWritable, Text, Text, NullWri
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        context.getCounter("mapjoin","map").increment(1);
 
         String line=value.toString();
         String[] parts=line.split("\t");

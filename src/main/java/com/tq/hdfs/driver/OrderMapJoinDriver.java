@@ -32,8 +32,7 @@ public class OrderMapJoinDriver {
     }
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException, URISyntaxException {
         Job job= Job.getInstance(conf);
-
-        job.addCacheFile(new URI("file:///D:/htest/order-mapjoin/product/p.txt"));
+        job.addCacheFile(new URI("file:///D:/learnbigdata/src/main/resources/htest/order-mapjoin/product/p.txt"));
 
         job.setJarByClass(OrderMapJoinDriver.class);
         job.setMapperClass(OrderMapJoinMapper.class);
@@ -46,8 +45,8 @@ public class OrderMapJoinDriver {
         job.setOutputValueClass(NullWritable.class);
 
         job.setNumReduceTasks(0);//不适用reducer
-        FileInputFormat.setInputPaths(job,new Path("D:\\htest\\order-mapjoin\\order"));
-        FileOutputFormat.setOutputPath(job,new Path("D:\\htest\\order-mapjoin\\out"));
+        FileInputFormat.setInputPaths(job,new Path("D:\\learnbigdata\\src\\main\\resources\\htest\\order-mapjoin\\order"));
+        FileOutputFormat.setOutputPath(job,new Path("D:\\learnbigdata\\src\\main\\resources\\htest\\order-mapjoin\\out2"));
 
         job.waitForCompletion(true);
 
