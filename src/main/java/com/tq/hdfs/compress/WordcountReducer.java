@@ -1,28 +1,26 @@
-package com.tq.hdfs.combiner;
+package com.tq.hdfs.compress;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * @author tq
  * @version V1.0
- * @Package com.tq.hdfs.combiner
- * @date 2021-06-24 8:58
+ * @Package com.tq.hdfs.reducer
+ * @date 2021-06-18 11:43
  * @Copyright © 2018-2019 *******
- * 输入为mapper输出  输出为reducer输入
- * mapper之后先reduce一次 整合
  */
-public class WordcountCombiner extends Reducer<Text, IntWritable,Text, IntWritable > {
-
+public class WordcountReducer extends Reducer<Text, IntWritable,Text,IntWritable> {
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int sum=0;
-        for (IntWritable value : values) {
-            int v=value.get();
-            sum+=v;
+        Integer sum=new Integer(0);
+        Iterator<IntWritable> vs=values.iterator();
+        while (vs.hasNext()){
+            sum+=vs.next().get();
         }
         context.write(key,new IntWritable(sum));
     }

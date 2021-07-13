@@ -21,6 +21,7 @@ import java.io.OutputStream;
  * @date 2021-06-24 10:17
  * @Copyright © 2018-2019 *******
  * reducer输入
+ * 写多个文件
  */
 public class LogOutput extends FileOutputFormat<Text, NullWritable> {
 
@@ -61,7 +62,6 @@ public class LogOutput extends FileOutputFormat<Text, NullWritable> {
         public void close(TaskAttemptContext taskAttemptContext) throws IOException, InterruptedException {
             IOUtils.closeStream(tq);
             IOUtils.closeStream(other);
-
         }
     }
 }
